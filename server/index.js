@@ -7,6 +7,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.get('/api/characters', cc.getCharacters)
+app.delete('/api/characters/:id', cc.deleteCharacter)
 
 
 app.listen(3005, () => {

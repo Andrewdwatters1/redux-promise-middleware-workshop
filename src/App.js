@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux'
-import {getCharacters} from './reducer'
+import {getCharacters, deleteCharacter} from './reducer'
 import Loading from 'react-loading-animation'
 
 class App extends Component {
@@ -11,13 +11,18 @@ class App extends Component {
   }
 
   render() {
-    let {starWarsCharacters, errorMessage} = this.props
+    let {starWarsCharacters, errorMessage, deleteCharacter} = this.props
     return (
       starWarsCharacters.length 
       ?
       <div className="App">
         {starWarsCharacters.map(character => {
-          return <p key={character.id}>{character.name}</p>
+          return (
+            <div>
+              <p key={character.id}>{character.name}</p>
+              <button onClick={() => deleteCharacter(character.id)}>Delete Character</button>
+            </div>
+          ) 
         })}
       </div>
       :
@@ -39,4 +44,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getCharacters})(App);
+export default connect(mapStateToProps, {getCharacters, deleteCharacter})(App);
+
+
+// function testing() {
+//   //doing stuff
+// }
+
+// testing()

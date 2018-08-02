@@ -48,5 +48,14 @@ module.exports = {
        setTimeout(() => {
         res.status(200).send(characters)
        }, 5000)
+    },
+    deleteCharacter: (req, res) => {
+        let {id} = req.params
+        for(let i = 0; i < characters.length; i++) {
+            if(characters[i].id === Number(id)) {
+                characters.splice(i, 1)
+            }
+        }
+        res.status(200).send(characters)
     }
 }
